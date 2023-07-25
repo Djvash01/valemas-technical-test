@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { PageEvent } from '@angular/material/paginator';
 import { Photo } from '@models/photo.model';
 import { EndpointsService } from '@services/endpoints/endpoints.service';
 import { RequestService } from '@services/request/request.service';
@@ -13,7 +14,10 @@ import { Observable } from 'rxjs';
 })
 export class AlbumsComponent implements OnInit{
 
-  public albums$!: Observable<Photo[]>;
+  public albums: Photo[] = [];
+  public totalElements = 50;
+  public pageSize = 20;
+  public pageIndex = 0;
 
   constructor(
     private readonly request: RequestService,
@@ -26,7 +30,16 @@ export class AlbumsComponent implements OnInit{
   }
 
   private getAlbums(): void {
-    this.albums$ = this.request.get<Photo[]>(this.endpoint.photos.getAlbums);
+    this.request.get<Photo[]>(this.endpoint.photos.getAlbums).subscribe((albums) => {
+      this.albums = albums;
+      this.totalElements = albums.length;
+    });
+  }
+
+  public get albumsByPage(): Photo[] {
+    if(!this.albums.length) return [];
+
+    return this.albums.slice(((this.pageIndex+1)*this.pageSize)-this.pageSize, (this.pageIndex+1)*this.pageSize);
   }
 
   photoTrackBy(index: number, photo: Photo): number {
@@ -35,6 +48,10 @@ export class AlbumsComponent implements OnInit{
 
   openDialog(photo: Photo){
     this.dialog.open(ImageComponent, { data: photo });
+  }
+
+  changePage(pageEvent: PageEvent): void {
+    this.pageIndex = pageEvent.pageIndex;
   }
 
 

@@ -1,6 +1,5 @@
-
-<div class="container" *ngIf="(albums$ | async) as albums">
-  <ng-container *ngFor="let photo of albums; trackBy:photoTrackBy">
+<div class="container" *ngIf="albumsByPage.length">
+  <ng-container *ngFor="let photo of albumsByPage; trackBy: photoTrackBy">
     <mat-card>
       <mat-card-header>
         {{ photo.title }}
@@ -10,4 +9,12 @@
       </mat-card-actions>
     </mat-card>
   </ng-container>
+  <mat-paginator
+    (page)="changePage($event)"
+    [length]="totalElements"
+    [pageSize]="pageSize"
+    [pageIndex]="pageIndex"
+    aria-label="Select page"
+  >
+  </mat-paginator>
 </div>

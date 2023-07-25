@@ -7,6 +7,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { ImageComponent } from '@shared/image/image.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+
 
 
 
@@ -20,7 +22,8 @@ import { ImageComponent } from '@shared/image/image.component';
     AlbumsRoutingModule,
     MatCardModule,
     MatButtonModule,
-    MatDialogModule
+    MatDialogModule,
+    MatPaginatorModule
   ]
 })
 export class AlbumsModule { }
