@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { Photo } from '@models/photo.model';
 import { EndpointsService } from '@services/endpoints/endpoints.service';
 import { RequestService } from '@services/request/request.service';
+import { ImageComponent } from '@shared/image/image.component';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -15,7 +17,8 @@ export class AlbumsComponent implements OnInit{
 
   constructor(
     private readonly request: RequestService,
-    private readonly endpoint: EndpointsService
+    private readonly endpoint: EndpointsService,
+    public readonly dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -28,6 +31,10 @@ export class AlbumsComponent implements OnInit{
 
   photoTrackBy(index: number, photo: Photo): number {
     return photo.id;
+  }
+
+  openDialog(photo: Photo){
+    this.dialog.open(ImageComponent, { data: photo });
   }
 
 

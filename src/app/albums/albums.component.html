@@ -6,7 +6,7 @@
         {{ photo.title }}
       </mat-card-header>
       <mat-card-actions>
-        <button mat-raised-button>View photo</button>
+        <button mat-flat-button (click)="openDialog(photo)">View photo</button>
       </mat-card-actions>
     </mat-card>
   </ng-container>
