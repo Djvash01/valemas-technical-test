@@ -28,6 +28,9 @@
       <mat-card-content>
         <p>{{ post.body }}</p>
       </mat-card-content>
+      <mat-card-actions>
+        <a mat-button routerLink="/post/{{post.id}}" >ver comentarios</a>
+      </mat-card-actions>
     </mat-card>
   </ng-container>
 </section>

@@ -14,5 +14,6 @@ export class EndpointsService {
   public readonly post = {
     getPosts: `${environment.apiUrl}posts/`,
     getById: (id: number) => `${environment.apiUrl}posts/${id}`,
+    getComments: (id: string) => `${environment.apiUrl}posts/${id}/comments`,
   } as const;
 }

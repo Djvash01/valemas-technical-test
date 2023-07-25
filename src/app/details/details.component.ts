@@ -38,8 +38,7 @@ export class DetailsComponent implements OnInit {
 
   private getPost(): void {
     this.posts$ = this.request.get<Post[]>(this.endpoints.post.getPosts).pipe(
-      map((posts) => posts.filter((post) => post.userId.toString() === this.userId)),
-      tap((posts) => console.log(posts))
+      map((posts) => posts.filter((post) => post.userId.toString() === this.userId))
     );
   }
 }

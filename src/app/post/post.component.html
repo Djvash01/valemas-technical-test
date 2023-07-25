@@ -1,0 +1,15 @@
+<div class="content" *ngIf="(comments$ | async ) as comments">
+  <ng-container *ngFor="let comment of comments">
+    <mat-card>
+      <mat-card-content>
+        <p>{{ comment.body }}</p>
+        <mat-card-subtitle>
+          {{ comment.name }}
+        </mat-card-subtitle>
+        <mat-card-subtitle>
+          {{ comment.email }}
+        </mat-card-subtitle>
+      </mat-card-content>
+    </mat-card>
+  </ng-container>
+</div>
