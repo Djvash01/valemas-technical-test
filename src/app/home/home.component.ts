@@ -24,7 +24,7 @@ import {
 })
 export class HomeComponent implements OnInit, OnDestroy {
   public pageSize = 10;
-  public search: FormControl = new FormControl('');
+  public search: FormControl = new FormControl();
   public users$!: Observable<User[]>;
   private unsubscribe$ = new Subject<void>();
 
@@ -49,7 +49,6 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   private filterUser(): void {
     this.search.valueChanges.pipe(
-      tap((value) => console.log(value)),
       debounceTime(500),
       distinctUntilChanged(),
       takeUntil(this.unsubscribe$),
@@ -64,8 +63,9 @@ export class HomeComponent implements OnInit, OnDestroy {
             catchError(() => of([])
           ))
       ),
-    );
-    this.users$ = this.request.get<User[]>(this.endpoint.user.getUsers);
+    ).subscribe((users: User[]) =>{
+      this.users$ = of(users);
+    });
   }
 
   public trackBy(index: number, user: User): number {
