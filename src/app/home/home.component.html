@@ -1,0 +1,28 @@
+<section class="toolbar">
+  <mat-form-field class="example-full-width">
+    <mat-label>Search</mat-label>
+    <input matInput id="search" type="text" [formControl]="search" />
+    
+  </mat-form-field>
+</section>
+<section class="content">
+  <ng-container *ngIf="users$ | async as users">
+    <ng-container *ngFor="let user of users; trackBy: trackBy">
+      <mat-card>
+        <mat-card-header>
+          {{ user.name | titlecase }}
+        </mat-card-header>
+        <mat-card-actions>
+          <a mat-button routerLink="/details/{{user.id}}" >ver detalles</a>
+        </mat-card-actions>
+      </mat-card>
+    </ng-container>
+    <mat-paginator
+      [length]="users.length"
+      [pageSize]="10"
+      [pageSizeOptions]="[5, 10]"
+      aria-label="Select page"
+    >
+    </mat-paginator>
+  </ng-container>
+</section>

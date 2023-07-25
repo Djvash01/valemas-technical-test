@@ -1,0 +1,13 @@
+<section class="user" *ngIf="(user$ | async) as user">
+  <div class="user__info">
+    <h4> {{ user.name | titlecase }}</h4>
+  </div>
+</section>
+<section class="post" *ngIf="(posts$ | async) as posts">
+  <ng-container *ngFor="let post of posts">
+    <div>
+      <h4>{{ post.title }}</h4>
+      <span>{{ post.body }}</span>
+    </div>
+  </ng-container>
+</section>
