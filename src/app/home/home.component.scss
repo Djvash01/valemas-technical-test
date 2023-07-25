@@ -1,5 +1,10 @@
 .toolbar{
-  padding: 10% 20%;
+  padding: 10%;
+
+  @media (min-width: 600px) {
+    padding: 20px 10%;
+  }
+
 }
 
 .content {

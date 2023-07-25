@@ -1,0 +1,14 @@
+.user {
+  padding: 20px;
+
+  &__info {
+    padding: 10px;
+  }
+}
+
+.posts {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 20px;
+}
